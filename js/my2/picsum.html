@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>picsum</h1>    
+    <div id="content"></div>
+    
+    <script>
+        const contentElem = document.getElementById('content');
+
+        //Open API > 인증 X > Key값만 준다. 
+        //get, post, put, delete > Restful API
+        
+        fetch('https://picsum.photos/v2/list')
+        .then(function(res) {
+            return res.json();
+        })
+        .then(function(data) {            
+            makeList(data);
+        })        
+        .catch(function(err) {
+            console.log(err);
+        });
+
+        function makeList(data) {
+            data.forEach(function(item) {
+                console.log(item);
+                makeItem(item);
+            });
+        }
+
+        function makeItem(item) {
+            const img = document.createElement('img');
+            img.src = item.download_url;
+            img.alt = item.author;
+            //contentElem.append(img);
+            //contentElem.append(img);
+            //contentElem.appendChild('안녕');
+            contentElem.prepend(img);
+
+        }
+    </script>
+
+    <img src="이미지 주소값" alt="이미지 정보 텍스트">
+</body>
+</html>

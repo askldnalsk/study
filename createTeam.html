@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const sGroup = [
+            '최상혁', '김혜린', '이민정', '배진화', '유정원',
+            '최성환', '김민석', '김소연', '황지원'
+        ];
+        const aGroup = [
+            '김예리', '배소영', '윤아람', '정유림', '이해단',
+            '조수정', '정소연', '오세훈', '이성환'
+        ];
+        const bGroup = [
+            '황보규림', '박원지', '박루아', '백현주', '정성훈',
+            '최혜빈', '이승진', '박지민'
+        ];
+        const teams = [];
+
+        function getRandomVal(len) {
+            return parseInt(Math.random() * len);
+        }
+
+        for(let i=0; i<9; i++) {
+            const team = [];
+            const sIdx = getRandomVal(sGroup.length);
+            //console.log('sIdx : ' + sIdx);
+            team.push(sGroup.splice(sIdx, 1)[0]);
+
+            let delayUntil = Date.now() + 250;
+            while(Date.now() < delayUntil);
+           
+            const aIdx = getRandomVal(aGroup.length);
+            //console.log('aIdx : ' + aIdx);
+            team.push(aGroup.splice(sIdx, 1)[0]);
+
+            delayUntil = Date.now() + 250;
+            while(Date.now() < delayUntil);
+
+            if(bGroup.length > 0) {
+                const bIdx = getRandomVal(bGroup.length);
+                //console.log('bIdx : ' + bIdx);
+                team.push(bGroup.splice(bIdx, 1)[0]);
+            }
+            teams.push(team);
+        }
+
+        for(let i=0; i<9; i++) {
+            
+        }
+
+        /*
+        for(let i=bGroup.length; i>0; i--) {
+            const teamIdx = parseInt(Math.random() * teams.length);
+            teams[teamIdx].push(bGroup.pop());
+        }
+        */
+        for(let i=0; i<teams.length; i++) {            
+            //console.log(`${String.fromCharCode(65 + i)} : `);            
+            console.log(`${i+1}팀`);
+
+            const team = teams[i];
+            for(let z=team.length; z>0; z--) {
+                const idx = parseInt(Math.random() * team.length);
+                
+                console.log(team.splice(idx, 1)[0]);
+                
+            }
+            console.log();
+        }
+
+    </script>
+</body>
+</html>

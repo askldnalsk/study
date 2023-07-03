@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>numberBaseBall</h1>   
+    <script>
+        const numArr = [0, 0, 0];
+        let i=0;
+        
+        mainLoop:
+        while(i<numArr.length) {
+            const rNum = parseInt(Math.random() * 9) + 1;            
+            for(let z=0; z<i; z++) {
+                if(rNum === numArr[z]) {
+                    continue mainLoop;
+                }
+            }
+            numArr[i++] = rNum;            
+        }
+        //console.log(numArr + '');
+        let cnt = 0;
+        while(true) {
+            cnt++;
+            const answer = prompt('숫자 세개를 입력해 주세요. (구분은 빈칸)');
+            //1 2 3
+            console.log(answer);
+            const answerArr = answer.split(' ');
+            const answerNumberArr = answerArr.map(Number);            
+            
+            let s=0, b=0;
+            for(let i=0; i<numArr.length; i++) {
+                for(let z=0; z<answerNumberArr.length; z++) {
+                    if(numArr[i] === answerNumberArr[z]) {
+                        if(i === z) {
+                            s++;
+                        } else {
+                            b++;
+                        }
+                    }
+                }
+            }
+            console.log(`S: ${s}, B: ${b}, O: ${numArr.length - (s + b)}`);
+            if(s === numArr.length) {
+                break;
+            }
+        }
+        console.log(`게임 종료 : ${cnt}`);
+
+        /*
+        loop1 :
+        for(let i=0; i<numArr.length; i++) {
+            const rNum = parseInt(Math.random() * 9) + 1;            
+            for(let z=0; z<i; z++) {                
+                if(rNum === numArr[z]) {
+                    i--;
+                    continue loop1;               
+                }
+            }            
+            numArr[i] = rNum;
+        }
+        console.log(numArr + '');
+        */
+    </script>
+</body>
+</html>
